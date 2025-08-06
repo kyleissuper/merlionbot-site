@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merlion.bot - Build automations across all your applications</title>
+    <meta name="description" content="Merlion builds instant connectors for any application with an API. No code, no drag, no drop - just answer questions about your business scenarios and automate workflows instantly.">
+    <meta name="keywords" content="automation, API connectors, workflow automation, no-code, business automation, application integration">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://merlion.bot/">
+    <meta property="og:title" content="Merlion.bot - Build automations across all your applications">
+    <meta property="og:description" content="Merlion builds instant connectors for any application with an API. No code, no drag, no drop - just answer questions about your business scenarios and automate workflows instantly.">
+    <meta property="og:image" content="/android-chrome-512x512.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://merlion.bot/">
+    <meta property="twitter:title" content="Merlion.bot - Build automations across all your applications">
+    <meta property="twitter:description" content="Merlion builds instant connectors for any application with an API. No code, no drag, no drop - just answer questions about your business scenarios and automate workflows instantly.">
+    <meta property="twitter:image" content="/android-chrome-512x512.png">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --clr-line: rgb(148, 148, 148);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Logo */
+        .logo {
+            position: absolute;
+            top: 30px;
+            left: 5%;
+            z-index: 10;
+            opacity: 0;
+            animation: fadeInDown 0.8s ease-out 0.3s forwards;
+        }
+
+        .logo img {
+            height: 220px;
+            width: auto;
+            filter: brightness(0) saturate(80%) invert(25%) sepia(97%) saturate(3207%) hue-rotate(259deg) brightness(50%) contrast(101%);
+        }
+
+        @media (min-width: 1200px) {
+            .logo {
+                left: 8%;
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 20px;
+            border: 1px solid var(--clr-line);
+        }
+
+        .btn-primary {
+            background: #4c1d95;
+            color: white;
+            border: 2px solid #4c1d95;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-primary:hover {
+            background: #6b21a8;
+            border-color: #6b21a8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(76, 29, 149, 0.25);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 0;
+            margin: 0;
+        }
+
+        .hero-section {
+            background-color: #ffffff;
+            width: 100%;
+            min-height: 80vh;
+            padding: 140px 0;
+            color: #4c1d95;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--clr-line);
+        }
+
+        @keyframes meshMove1 {
+            0%, 100% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 50%; }
+            25% { background-position: 100% 0%, 0% 100%, 0% 50%, 100% 50%; }
+            50% { background-position: 100% 100%, 0% 0%, 100% 0%, 50% 100%; }
+            75% { background-position: 0% 100%, 100% 0%, 50% 100%, 0% 0%; }
+        }
+
+        @keyframes meshMove2 {
+            0%, 100% { background-position: 50% 0%, 50% 100%, 0% 50%, 100% 50%; }
+            50% { background-position: 100% 50%, 0% 50%, 50% 0%, 50% 100%; }
+        }
+
+                 @keyframes meshMove3 {
+             0%, 100% { background-position: 0% 50%, 100% 50%, 50% 0%, 50% 100%; }
+             33% { background-position: 100% 0%, 0% 100%, 100% 100%, 0% 0%; }
+             66% { background-position: 0% 100%, 100% 0%, 0% 0%, 100% 100%; }
+         }
+
+         /* Animated Background Elements */
+         .hero-section::before {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 0;
+             right: 0;
+             bottom: 0;
+             z-index: 1;
+             background-image: 
+                 repeating-linear-gradient(
+                     90deg,
+                     transparent 0px,
+                     transparent 40px,
+                     rgba(76, 29, 149, 0.08) 42px,
+                     rgba(76, 29, 149, 0.08) 44px
+                 ),
+                 repeating-linear-gradient(
+                     90deg,
+                     transparent 0px,
+                     transparent 80px,
+                     rgba(107, 33, 168, 0.06) 82px,
+                     rgba(107, 33, 168, 0.06) 86px
+                 );
+             mask: radial-gradient(ellipse 80% 100% at center, transparent 30%, black 70%);
+             animation: moveLines1 15s linear infinite;
+         }
+
+         .hero-section::after {
+             content: '';
+             position: absolute;
+             top: 0;
+             left: 0;
+             right: 0;
+             bottom: 0;
+             z-index: 1;
+             background-image: 
+                 repeating-linear-gradient(
+                     90deg,
+                     transparent 0px,
+                     transparent 60px,
+                     rgba(76, 29, 149, 0.1) 61px,
+                     rgba(76, 29, 149, 0.1) 63px
+                 );
+             mask: radial-gradient(ellipse 60% 100% at center, transparent 40%, black 80%);
+             animation: moveLines2 20s linear infinite reverse;
+         }
+
+         @keyframes moveLines1 {
+             0% { transform: translateX(-100px); }
+             100% { transform: translateX(100px); }
+         }
+
+         @keyframes moveLines2 {
+             0% { transform: translateX(-150px); }
+             100% { transform: translateX(150px); }
+         }
+
+
+
+        .hero-content {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-text h1 {
+            font-size: 64px;
+            font-weight: 900;
+            font-variation-settings: 'wght' 850;
+            color: #4c1d95;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
+            margin-top: 150px;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .feature-icon img {
+            width: 64px;
+            height: 64px;
+            filter: brightness(0) saturate(100%) invert(25%) sepia(97%) saturate(3207%) hue-rotate(259deg) brightness(80%) contrast(101%);
+        }
+
+        .feature-text h3 {
+            color: #4c1d95;
+            font-size: 20px;
+            font-weight: 900;
+            font-variation-settings: 'wght' 850;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-text p {
+            color: #6b21a8;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+
+        /* Tooltip styles */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+            cursor: help;
+        }
+
+        .tooltip-icon {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background: #6b21a8;
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 8px;
+            line-height: 12px;
+            margin-left: 3px;
+            font-weight: bold;
+            vertical-align: super;
+            position: relative;
+            top: -2px;
+        }
+
+        .tooltip-text {
+            visibility: hidden;
+            width: 280px;
+            background-color: #333;
+            color: #fff;
+            text-align: left;
+            border-radius: 6px;
+            padding: 12px;
+            position: absolute;
+            z-index: 1000;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -140px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 14px;
+            line-height: 1.4;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: #333 transparent transparent transparent;
+        }
+
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .hero-cta {
+            margin-top: 160px;
+        }
+
+
+
+        /* FAQ Section */
+        .faq-section {
+            background: rgb(244, 246, 255);
+            padding: 80px 0;
+            font-family: 'Georgia', 'Times New Roman', serif;
+        }
+
+        .faq-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .faq-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+        }
+
+        @media (min-width: 992px) {
+            .faq-layout {
+                grid-template-columns: 300px 1fr;
+                gap: 80px;
+            }
+        }
+
+        .faq-header h2 {
+            font-size: 48px;
+            font-weight: 500;
+            margin-bottom: 0;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .faq-header p {
+            font-size: 18px;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-list {
+            max-width: 700px;
+        }
+
+        .faq-item {
+            margin-bottom: 24px;
+            border-bottom: 1px solid var(--clr-line);
+            padding-bottom: 24px;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .faq-question {
+            width: 100%;
+            border: none;
+            padding: 24px;
+            text-align: left;
+            font-size: 18px;
+            font-weight: 600;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            color: #1e293b;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #000000;
+        }
+
+        .faq-item details {
+            interpolate-size: allow-keywords;
+            overflow: clip;
+            margin-top: 0.125em;
+        }
+
+        .faq-item details summary {
+            list-style: none;
+            cursor: pointer;
+            display: block;
+            position: relative;
+            font-size: 24px;
+            font-weight: 400;
+            font-style: italic;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.4;
+            padding: 0;
+        }
+
+        .faq-item details summary::-webkit-details-marker {
+            display: none;
+        }
+
+
+
+        .faq-item details[open]::details-content {
+            height: auto;
+        }
+
+        .faq-item details::details-content {
+            height: 0;
+            overflow-y: clip;
+            transition: content-visibility 475ms allow-discrete, height 475ms;
+        }
+
+        .faq-answer {
+            padding: 0px 0 0 0;
+        }
+
+        .faq-answer p {
+            padding: 16px 0 0 0;
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 0;
+            font-style: normal;
+        }
+
+         /* Footer */
+         .footer {
+             background: #000000;
+             color: white;
+             padding: 60px 0;
+         }
+
+         .footer-content {
+             max-width: 1200px;
+             margin: 0 auto;
+             padding: 0 20px;
+         }
+
+                 .footer-info {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .footer-info p {
+            color: #a1a1aa;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+            display: inline-block;
+        }
+
+        .footer-info p:not(:last-child)::after {
+            content: ' • ';
+            margin: 0 8px;
+        }
+
+         .footer-column h4 {
+             font-size: 16px;
+             font-weight: 600;
+             margin-bottom: 16px;
+             color: white;
+         }
+
+         .footer-column ul {
+             list-style: none;
+             padding: 0;
+         }
+
+         .footer-column ul li {
+             margin-bottom: 8px;
+         }
+
+         .footer-column ul li a {
+             color: #a1a1aa;
+             text-decoration: none;
+             font-size: 14px;
+             transition: color 0.3s ease;
+         }
+
+         .footer-column ul li a:hover {
+             color: white;
+         }
+
+                 .footer-bottom {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            text-align: center;
+        }
+
+                 .footer-bottom p {
+            color: #a1a1aa;
+            font-size: 14px;
+            margin: 0;
+        }
+
+        .footer-links a {
+            color: #a1a1aa;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+         .footer-social {
+             display: flex;
+             gap: 16px;
+         }
+
+         .footer-social a {
+             color: #a1a1aa;
+             text-decoration: none;
+             font-size: 14px;
+             transition: color 0.3s ease;
+         }
+
+         .footer-social a:hover {
+             color: white;
+         }
+
+                 @media (max-width: 768px) {
+            .hero-content {
+                text-align: left;
+            }
+
+            .hero-features .feature {
+                margin-right: 20px;
+            }
+
+            .feature-icon {
+                margin-right: 12px;
+            }
+
+            .footer-info p {
+                display: block;
+                margin-bottom: 4px;
+            }
+
+            .footer-info p:not(:last-child)::after {
+                display: none;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 12px;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .logo {
+                top: 25px;
+                left: 6%;
+            }
+
+            .logo img {
+                height: 160px;
+            }
+
+            .hero-section {
+                min-height: 80vh;
+                padding: 80px 0;
+            }
+
+            .hero-content {
+                padding: 0 20px;
+            }
+
+            .hero-text h1 {
+                font-size: 40px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-layout {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .faq-header h2 {
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                top: 20px;
+                left: 5%;
+            }
+
+            .logo img {
+                height: 160px;
+            }
+
+            .hero-section {
+                min-height: 70vh;
+                padding: 60px 0;
+            }
+
+            .hero-text h1 {
+                font-size: 32px;
+            }
+
+            .faq-header h2 {
+                font-size: 24px;
+            }
+
+            .faq-question {
+                font-size: 16px;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo">
+        <img src="logo.svg" alt="Merlion.bot" />
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="hero-section">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Build automations across all your applications</h1>
+                    
+                    <div class="features">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <img src="linked-icon.svg" alt="Universal Connector" />
+                            </div>
+                            <div class="feature-text">
+                                <h3>Instant Connectors</h3>
+                                <p>Merlion builds connectors instantly for any application with an <span class="tooltip">API<span class="tooltip-icon">?</span>
+                                    <span class="tooltip-text">
+                                        APIs are the standard way for automation platforms to connect applications. Most modern business apps have APIs.
+                                        <br><br>
+                                        Other automation platforms require you to wait weeks or months if a connector is not available, even if the APIs are there.
+                                    </span>
+                                </span>
+                            </p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <img src="nocode-icon.svg" alt="Lightning Fast" />
+                            </div>
+                            <div class="feature-text">
+                                <h3>No Code, No Drag, No Drop</h3>
+                                <p>Merlion asks you questions using real scenarios, not code, not low-code</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="hero-cta">
+                        <a href="https://buttondown.com/merlionbot" class="btn btn-primary">Sign up for waitlist</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <div class="faq-layout">
+                <div class="faq-header">
+                    <h2>Frequently Asked Questions</h2>
+                </div>
+                
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <details name="faq">
+                            <summary class="faq-question">What is Merlion and how does it work?</summary>
+                            <div class="faq-answer">
+                                <p>Merlion is an automation platform that builds connections between your applications instantly. Unlike traditional automation tools, Merlion uses a conversational approach where it asks you questions about real business scenarios rather than requiring you to code, drag, or drop elements to create workflows.</p>
+                                <p>To build instant connectors, Merlion communicates with your applications' APIs to understand the data and actions available.</p>
+                                <p>Merlion was created after building hundreds of integrations for real customers on other platforms, and learning the hard way that traditional automation tools are not just expensive, but also hard to maintain.</p>
+                            </div>
+                        </details>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <details name="faq">
+                            <summary class="faq-question">What is an API and why does it matter for automation?</summary>
+                            <div class="faq-answer">
+                                <p>An API (Application Programming Interface) is like a bridge that allows different software applications to communicate and share data with each other. Most modern business applications have APIs, which is what makes automation possible. You don't need to understand how APIs work technically - Merlion handles all the technical details for you.</p>
+                            </div>
+                        </details>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <details name="faq">
+                            <summary class="faq-question">What makes Merlion different from other automation tools like Zapier, Make, or Microsoft Power Automate?</summary>
+                            <div class="faq-answer">
+                                <p>Merlion's key differentiator is its "no code, no drag, no drop" approach. Instead of building workflows visually or through code, Merlion asks you questions about your actual business scenarios and builds the automations for you. It also creates instant connectors for any application with an API, eliminating the wait time for new integrations.</p>
+                            </div>
+                        </details>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <details name="faq">
+                            <summary class="faq-question">What applications can Merlion connect to, and can it work with custom or proprietary systems?</summary>
+                            <div class="faq-answer">
+                                <p>Merlion can connect to any application that has an API by building instant connectors. This includes popular business applications (like Salesforce, Gmail, Slack, QuickBooks), custom-built systems, and proprietary software. If an application doesn't have an API, Merlion's support team can help explore alternative connection methods.</p>
+                            </div>
+                        </details>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <details name="faq">
+                            <summary class="faq-question">Do I need technical skills to use Merlion, and how long does setup take?</summary>
+                            <div class="faq-answer">
+                                <p>No technical, coding, or low-code skills are required. Merlion guides you through setup using natural language questions about your business processes.</p>
+                                <p>Once questions are answered, Merlion builds your automation instantly, no human intervention required.</p>
+                            </div>
+                        </details>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <details name="faq">
+                            <summary class="faq-question">What are the pricing options, and how do I get started?</summary>
+                            <div class="faq-answer">
+                                <p>Currently, Merlion is in a waitlist phase. We aim to price similarly to existing small-business automation tools. Sign up for the waitlist to receive early access and pricing information.</p>
+                            </div>
+                        </details>
+                    </div>
+                    
+                    <div class="faq-item">
+                        <details name="faq">
+                            <summary class="faq-question">How secure and reliable is Merlion, and what happens to my data?</summary>
+                            <div class="faq-answer">
+                                <p>Merlion saves your automation data to an encrypted, logically separated database that is not shared with any other customers.</p>
+                                <p>To build its instant connectors for all customers, Merlion also stores programatically sanitized and anonymized automation data in its own application databases that are not linked to any customers or individuals.</p>
+                                <p>To enable the workflow building experience, Merlion also stores the minimum amount of information required to have separate user accounts: your email address, name, and company name. We do not sell your data to third parties.</p>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+         <!-- Footer -->
+     <footer class="footer">
+         <div class="footer-content">
+             <div class="footer-info">
+                 <p>251 Little Falls Drive</p>
+                 <p>Wilmington, DE 19808</p>
+             </div>
+             
+                            <div class="footer-bottom">
+                   <p>&copy; <script>document.write(new Date().getFullYear())</script>
+                      KHT Software, Inc. All rights reserved.</p>
+                   <div class="footer-links">
+                       <a href="privacy.html">Privacy Policy</a>
+                   </div>
+               </div>
+         </div>
+     </footer>
+</body>
+</html> 
