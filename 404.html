@@ -3,81 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found - Merlion.bot</title>
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <title>merlion.bot: Page Not Found</title>
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg: #000000;
+            --border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f7f8f8;
+            --text-secondary: #9ca0a8;
+            --text-tertiary: #62666d;
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg);
+            color: var(--text-secondary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 15px;
             line-height: 1.6;
-            color: #4c1d95;
-            background: #ffffff;
+            letter-spacing: -0.011em;
+            -webkit-font-smoothing: antialiased;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 20px;
+            padding: 24px;
+            position: relative;
+        }
+
+        /* starfield-ish glow, matching the hero */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 900px;
+            height: 600px;
+            background: radial-gradient(ellipse at center, rgba(94, 106, 210, 0.14) 0%, transparent 65%);
+            pointer-events: none;
         }
 
         .error-content {
-            max-width: 500px;
+            position: relative;
+            max-width: 480px;
         }
 
         h1 {
-            font-size: 72px;
-            font-weight: 900;
-            margin-bottom: 20px;
-            color: #4c1d95;
+            font-size: clamp(64px, 12vw, 96px);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1;
+            background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.72) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 12px;
         }
 
         h2 {
-            font-size: 24px;
+            font-size: 20px;
             font-weight: 600;
-            margin-bottom: 16px;
-            color: #4c1d95;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+            margin-bottom: 12px;
         }
 
         p {
-            font-size: 18px;
-            margin-bottom: 32px;
-            color: #6b21a8;
+            font-size: 16px;
+            margin-bottom: 36px;
         }
 
         .btn {
             display: inline-block;
             padding: 12px 24px;
-            background: #4c1d95;
-            color: white;
+            background: #059669;
+            color: #fff;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 10px;
+            font-size: 15px;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: background 0.15s ease;
         }
 
-        .btn:hover {
-            background: #6b21a8;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(76, 29, 149, 0.25);
+        .btn:hover { background: #047857; }
+
+        .home-link {
+            display: block;
+            margin-top: 20px;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.15s ease;
         }
+
+        .home-link:hover { color: var(--text-secondary); }
     </style>
 </head>
 <body>
     <div class="error-content">
         <h1>404</h1>
         <h2>Page Not Found</h2>
-        <p>The page you're looking for doesn't exist. Let's get you back to building automations!</p>
+        <p>The page you're looking for doesn't exist. Let's get you back to building integrations!</p>
         <a href="/" class="btn">Back to Home</a>
+        <a href="https://us.merlion.bot/" class="home-link">Log in to merlion.bot</a>
     </div>
 </body>
 </html>

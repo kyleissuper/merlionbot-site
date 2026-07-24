@@ -3,815 +3,804 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>merlion.bot - Build automations across all your applications</title>
-    <meta name="description" content="Merlion builds instant connectors for any application with an API. No code, no drag, no drop - just answer questions about your business scenarios and automate workflows instantly.">
-    <meta name="keywords" content="automation, API connectors, workflow automation, no-code, business automation, application integration">
-    
-    <!-- Open Graph / Facebook -->
+    <title>merlion.bot: Integrations you can trust</title>
+    <meta name="description" content="The integration platform that programmatically confirms you sent the right data to the other side. Prevent integration mistakes before they cost you.">
+
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://merlion.bot/">
-    <meta property="og:title" content="Merlion.bot - Build automations across all your applications">
-    <meta property="og:description" content="Merlion builds instant connectors for any application with an API. No code, no drag, no drop - just answer questions about your business scenarios and automate workflows instantly.">
-    <meta property="og:image" content="/android-chrome-512x512.png">
+    <meta property="og:title" content="merlion.bot: Integrations you can trust">
+    <meta property="og:description" content="The integration platform that programmatically confirms you sent the right data to the other side. Prevent integration mistakes before they cost you.">
+    <meta property="og:image" content="https://merlion.bot/assets/logo.png">
 
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://merlion.bot/">
-    <meta property="twitter:title" content="Merlion.bot - Build automations across all your applications">
-    <meta property="twitter:description" content="Merlion builds instant connectors for any application with an API. No code, no drag, no drop - just answer questions about your business scenarios and automate workflows instantly.">
-    <meta property="twitter:image" content="/android-chrome-512x512.png">
-    
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="merlion.bot: Integrations you can trust">
+    <meta name="twitter:description" content="The integration platform that programmatically confirms you sent the right data to the other side. Prevent integration mistakes before they cost you.">
+    <meta name="twitter:image" content="https://merlion.bot/assets/logo.png">
+
+    <link rel="icon" type="image/png" href="/assets/favicon.png">
+    <link rel="apple-touch-icon" href="/assets/favicon.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300..800&family=IBM+Plex+Mono:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --clr-line: rgb(148, 148, 148);
+            --bg: #000000;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-strong: rgba(255, 255, 255, 0.14);
+            --text-primary: #f7f8f8;
+            --text-secondary: #9ca0a8;
+            --text-tertiary: #62666d;
+            --section-gap: 220px;   /* single knob for spacing between sections */
         }
+
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: var(--bg);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-size: 15px;
             line-height: 1.6;
-            color: #333;
-            background: #ffffff;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Logo */
-        .logo {
-            position: absolute;
-            top: 30px;
-            left: 5%;
-            z-index: 10;
-            opacity: 0;
-            animation: fadeInDown 0.8s ease-out 0.3s forwards;
-        }
-
-        .logo img {
-            width: 220px;
-            height: auto;
-            filter: brightness(0) saturate(80%) invert(25%) sepia(97%) saturate(3207%) hue-rotate(259deg) brightness(50%) contrast(101%);
-        }
-
-        @media (min-width: 1200px) {
-            .logo {
-                left: 8%;
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            letter-spacing: -0.011em;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+            overflow-x: hidden;
         }
 
         .btn {
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            font-size: 20px;
-            border: 1px solid var(--clr-line);
-        }
-
-        .btn-primary {
-            background: #4c1d95;
-            color: white;
-            border: 2px solid #4c1d95;
-            backdrop-filter: blur(10px);
-        }
-
-        .btn-primary:hover {
-            background: #6b21a8;
-            border-color: #6b21a8;
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(76, 29, 149, 0.25);
-        }
-
-        /* Main Content */
-        .main-content {
-            padding: 0;
-            margin: 0;
-        }
-
-        .hero-section {
-            background-color: #ffffff;
-            width: 100%;
-            min-height: 80vh;
-            padding: 140px 0;
-            color: #4c1d95;
-            position: relative;
-            overflow: hidden;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            border-bottom: 1px solid var(--clr-line);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            text-decoration: none;
+            transition: transform 0.3s cubic-bezier(0.65, 0, 0.35, 1),
+                        background-color 0.15s ease,
+                        color 0.15s ease,
+                        border-color 0.15s ease;
+            cursor: pointer;
+            border: none;
         }
 
-        @keyframes meshMove1 {
-            0%, 100% { background-position: 0% 0%, 100% 100%, 50% 50%, 0% 50%; }
-            25% { background-position: 100% 0%, 0% 100%, 0% 50%, 100% 50%; }
-            50% { background-position: 100% 100%, 0% 0%, 100% 0%, 50% 100%; }
-            75% { background-position: 0% 100%, 100% 0%, 50% 100%, 0% 0%; }
+        .btn:hover { transform: translateY(-2px); }
+        .btn:active { transform: translateY(0); }
+
+        .btn-accent {
+            background: #059669;   /* us.merlion.bot --accent (emerald) */
+            color: #fff;
         }
 
-        @keyframes meshMove2 {
-            0%, 100% { background-position: 50% 0%, 50% 100%, 0% 50%, 100% 50%; }
-            50% { background-position: 100% 50%, 0% 50%, 50% 0%, 50% 100%; }
-        }
+        .btn-accent:hover { background: #047857; }   /* --accent-hover */
 
-                 @keyframes meshMove3 {
-             0%, 100% { background-position: 0% 50%, 100% 50%, 50% 0%, 50% 100%; }
-             33% { background-position: 100% 0%, 0% 100%, 100% 100%, 0% 0%; }
-             66% { background-position: 0% 100%, 100% 0%, 0% 0%, 100% 100%; }
-         }
+        .btn-lg { padding: 12px 24px; font-size: 15px; border-radius: 10px; }
 
-         /* Animated Background Elements */
-         .hero-section::before {
-             content: '';
-             position: absolute;
-             top: 0;
-             left: 0;
-             right: 0;
-             bottom: 0;
-             z-index: 1;
-             background-image: 
-                 repeating-linear-gradient(
-                     90deg,
-                     transparent 0px,
-                     transparent 40px,
-                     rgba(76, 29, 149, 0.08) 42px,
-                     rgba(76, 29, 149, 0.08) 44px
-                 ),
-                 repeating-linear-gradient(
-                     90deg,
-                     transparent 0px,
-                     transparent 80px,
-                     rgba(107, 33, 168, 0.06) 82px,
-                     rgba(107, 33, 168, 0.06) 86px
-                 );
-             mask: radial-gradient(ellipse 80% 100% at center, transparent 30%, black 70%);
-             animation: moveLines1 15s linear infinite;
-         }
-
-         .hero-section::after {
-             content: '';
-             position: absolute;
-             top: 0;
-             left: 0;
-             right: 0;
-             bottom: 0;
-             z-index: 1;
-             background-image: 
-                 repeating-linear-gradient(
-                     90deg,
-                     transparent 0px,
-                     transparent 60px,
-                     rgba(76, 29, 149, 0.1) 61px,
-                     rgba(76, 29, 149, 0.1) 63px
-                 );
-             mask: radial-gradient(ellipse 60% 100% at center, transparent 40%, black 80%);
-             animation: moveLines2 20s linear infinite reverse;
-         }
-
-         @keyframes moveLines1 {
-             0% { transform: translateX(-100px); }
-             100% { transform: translateX(100px); }
-         }
-
-         @keyframes moveLines2 {
-             0% { transform: translateX(-150px); }
-             100% { transform: translateX(150px); }
-         }
-
-
-
-        .hero-content {
-            max-width: 1000px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 0 20px;
+        /* ---------- Hero (full viewport) ---------- */
+        .hero {
+            position: relative;
+            min-height: calc(100vh - 56px); /* below-fold sheet peeks 56px at scroll top */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 0.5s forwards;
+            padding: calc(120px + 10vh) 24px 120px; /* +10vh: optically compensate for removed nav */
+            max-width: 840px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: clamp(40px, 7vw, 68px);
+            font-weight: 700;
+            letter-spacing: -0.035em;
+            line-height: 1.18;
+            background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.72) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 40px rgba(0, 0, 0, 1)) drop-shadow(0 0 12px rgba(0, 0, 0, 0.95)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9));
+            margin-bottom: 24px;
+        }
+
+        .hero p {
+            font-size: clamp(17px, 2.4vw, 21px);
+            font-weight: 400;
+            letter-spacing: -0.014em;
+            line-height: 1.55;
+            color: var(--text-secondary);
+            max-width: 620px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        /* hero drifts up + fades as you scroll past the fold */
+        .hero-inner {
             position: relative;
             z-index: 2;
+            will-change: transform, opacity;
         }
 
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-text h1 {
-            font-size: 64px;
-            font-weight: 900;
-            font-variation-settings: 'wght' 850;
-            color: #4c1d95;
-            line-height: 1.1;
-            letter-spacing: -0.02em;
-            margin-top: 150px;
-            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.3);
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .feature {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .feature-icon {
-            width: 64px;
-            height: 64px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .feature-icon img {
-            width: 64px;
-            height: 64px;
-            filter: brightness(0) saturate(100%) invert(25%) sepia(97%) saturate(3207%) hue-rotate(259deg) brightness(80%) contrast(101%);
-        }
-
-        .feature-text h3 {
-            color: #4c1d95;
-            font-size: 20px;
-            font-weight: 900;
-            font-variation-settings: 'wght' 850;
-            margin-bottom: 8px;
-            letter-spacing: -0.01em;
-        }
-
-        .feature-text p {
-            color: #6b21a8;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-
-        /* Tooltip styles */
-        .tooltip {
-            position: relative;
-            display: inline-block;
-            cursor: help;
-        }
-
-        .tooltip-icon {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            background: #6b21a8;
-            color: white;
-            border-radius: 50%;
-            text-align: center;
-            font-size: 8px;
-            line-height: 12px;
-            margin-left: 3px;
-            font-weight: bold;
-            vertical-align: super;
-            position: relative;
-            top: -2px;
-        }
-
-        .tooltip-text {
-            visibility: hidden;
-            width: 280px;
-            background-color: #333;
-            color: #fff;
-            text-align: left;
-            border-radius: 6px;
-            padding: 12px;
+        .nav-login {
             position: absolute;
-            z-index: 1000;
-            bottom: 125%;
-            left: 50%;
-            margin-left: -140px;
-            opacity: 0;
-            transition: opacity 0.3s;
+            top: 24px;
+            right: 28px;
+            z-index: 10;
+            color: var(--text-secondary);
+            text-decoration: none;
             font-size: 14px;
-            line-height: 1.4;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            font-weight: 500;
+            transition: color 0.15s ease;
         }
 
-        .tooltip-text::after {
-            content: "";
-            position: absolute;
-            top: 100%;
+        .nav-login:hover { color: var(--text-primary); }
+
+        /* ---------- Placeholder below the fold ---------- */
+        .below {
+            position: relative;
+            z-index: 2;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            border-radius: 24px 24px 0 0;
+            padding: 240px 24px 240px;   /* page-edge breathing: hero above, footer below */
+        }
+
+        /* roundish shadow: sheet floats above the starfield */
+        /* military chevron: fixed scroll cue at viewport bottom; bobs, fades out on scroll */
+        .below::after {
+            content: '';
+            position: fixed;
+            bottom: 28px;
             left: 50%;
-            margin-left: -5px;
-            border-width: 5px;
-            border-style: solid;
-            border-color: #333 transparent transparent transparent;
+            width: 16px;
+            height: 16px;
+            border-top: none;
+            border-left: none;
+            border-bottom: 2px solid rgba(156, 160, 168, 0.8);
+            border-right: 2px solid rgba(156, 160, 168, 0.8);
+            transform: translateX(-50%) rotate(45deg);
+            animation: caret-bob 2.2s ease-in-out infinite 4s, caret-appear 0.6s ease-out 4s backwards;
+            opacity: calc(var(--caret-o, 1) * 0.6);
         }
 
-        .tooltip:hover .tooltip-text {
-            visibility: visible;
-            opacity: 1;
+        @keyframes caret-appear {
+            from { opacity: 0; }
+            to   { opacity: 0.6; }   /* match the element's resting opacity */
         }
 
-        .hero-cta {
-            margin-top: 160px;
+        @keyframes caret-bob {
+            0%, 100% { transform: translateX(-50%) translateY(-3px) rotate(45deg); }
+            50%      { transform: translateX(-50%) translateY(3px) rotate(45deg); }
+        }
+
+        .below::before {
+            content: '';
+            position: absolute;
+            top: -240px;
+            left: 0;
+            right: 0;
+            height: 240px;   /* ends exactly at the sheet's top edge: bloom sits between starfield and sheet */
+            background: radial-gradient(ellipse 70% 100% at 50% 100%, rgba(94, 106, 210, 0.11) 0%, rgba(94, 106, 210, 0.05) 45%, transparent 80%);
+            pointer-events: none;
         }
 
 
 
-        /* FAQ Section */
-        .faq-section {
-            background: rgb(244, 246, 255);
-            padding: 80px 0;
-            font-family: 'Georgia', 'Times New Roman', serif;
+        .below-inner {
+            max-width: 680px;
+            margin: 0 auto;
         }
 
-        .faq-container {
+        /* ---------- Footer ---------- */
+        .footer {
+            position: relative;
+            z-index: 2;
+            background: var(--bg);
+            border-top: 1px solid var(--border);
+            padding: 28px 24px;
+        }
+
+        .footer-content {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .faq-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 60px;
-        }
-
-        @media (min-width: 992px) {
-            .faq-layout {
-                grid-template-columns: 300px 1fr;
-                gap: 80px;
-            }
-        }
-
-        .faq-header h2 {
-            font-size: 48px;
-            font-weight: 500;
-            margin-bottom: 0;
-            letter-spacing: -0.02em;
-            line-height: 1.1;
-        }
-
-        .faq-header p {
-            font-size: 18px;
-            line-height: 1.6;
-            display: none;
-        }
-
-        .faq-list {
-            max-width: 700px;
-        }
-
-        .faq-item {
-            margin-bottom: 24px;
-            border-bottom: 1px solid var(--clr-line);
-            padding-bottom: 24px;
-        }
-
-        .faq-item:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .faq-question {
-            width: 100%;
-            border: none;
-            padding: 24px;
-            text-align: left;
-            font-size: 18px;
-            font-weight: 600;
-            font-family: 'Georgia', 'Times New Roman', serif;
-            color: #1e293b;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: color 0.3s ease;
-        }
-
-        .faq-question:hover {
-            color: #000000;
-        }
-
-        .faq-item details {
-            interpolate-size: allow-keywords;
-            overflow: clip;
-            margin-top: 0.125em;
-        }
-
-        .faq-item details summary {
-            list-style: none;
-            cursor: pointer;
-            display: block;
-            position: relative;
-            font-size: 24px;
-            font-weight: 400;
-            font-style: italic;
-            font-family: 'Georgia', 'Times New Roman', serif;
-            line-height: 1.4;
-            padding: 0;
-        }
-
-        .faq-item details summary::-webkit-details-marker {
-            display: none;
-        }
-
-
-
-        .faq-item details[open]::details-content {
-            height: auto;
-        }
-
-        .faq-item details::details-content {
-            height: 0;
-            overflow-y: clip;
-            transition: content-visibility 475ms allow-discrete, height 475ms;
-        }
-
-        .faq-answer {
-            padding: 0px 0 0 0;
-        }
-
-        .faq-answer p {
-            padding: 16px 0 0 0;
-            font-size: 18px;
-            line-height: 1.6;
-            margin: 0;
-            font-style: normal;
-        }
-
-         /* Footer */
-         .footer {
-             background: #000000;
-             color: white;
-             padding: 60px 0;
-         }
-
-         .footer-content {
-             max-width: 1200px;
-             margin: 0 auto;
-             padding: 0 20px;
-         }
-
-                 .footer-info {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .footer-info p {
-            color: #a1a1aa;
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 0;
-            display: inline-block;
-        }
-
-        .footer-info p:not(:last-child)::after {
-            content: ' • ';
-            margin: 0 8px;
-        }
-
-         .footer-column h4 {
-             font-size: 16px;
-             font-weight: 600;
-             margin-bottom: 16px;
-             color: white;
-         }
-
-         .footer-column ul {
-             list-style: none;
-             padding: 0;
-         }
-
-         .footer-column ul li {
-             margin-bottom: 8px;
-         }
-
-         .footer-column ul li a {
-             color: #a1a1aa;
-             text-decoration: none;
-             font-size: 14px;
-             transition: color 0.3s ease;
-         }
-
-         .footer-column ul li a:hover {
-             color: white;
-         }
-
-                 .footer-bottom {
-            border-top: 1px solid #333;
-            padding-top: 20px;
             display: flex;
             justify-content: center;
-            align-items: center;
             flex-wrap: wrap;
-            gap: 20px;
-            text-align: center;
         }
 
-                 .footer-bottom p {
-            color: #a1a1aa;
-            font-size: 14px;
+        .footer-meta {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 6px 0;
+        }
+
+        .footer-meta > * + *::before {
+            content: '·';
+            margin: 0 14px;
+            color: var(--text-tertiary);
+            opacity: 0.5;
+        }
+
+        .footer-meta p {
+            color: var(--text-tertiary);
+            font-size: 13px;
             margin: 0;
+            letter-spacing: -0.005em;
         }
 
         .footer-links a {
-            color: #a1a1aa;
+            color: var(--text-tertiary);
             text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
+            font-size: 13px;
+            transition: color 0.2s ease;
         }
 
-        .footer-links a:hover {
-            color: white;
+        .footer-links a:hover { color: var(--text-primary); }
+
+        @media (max-width: 720px) {
+            .footer-content { flex-direction: column; text-align: center; }
+            .footer-meta { flex-direction: column; gap: 4px; }
+            .footer-meta > * + *::before { content: none; }
         }
 
-         .footer-social {
-             display: flex;
-             gap: 16px;
-         }
-
-         .footer-social a {
-             color: #a1a1aa;
-             text-decoration: none;
-             font-size: 14px;
-             transition: color 0.3s ease;
-         }
-
-         .footer-social a:hover {
-             color: white;
-         }
-
-                 @media (max-width: 768px) {
-            .hero-content {
-                text-align: left;
-            }
-
-            .hero-features .feature {
-                margin-right: 20px;
-            }
-
-            .feature-icon {
-                margin-right: 12px;
-            }
-
-            .footer-info p {
-                display: block;
-                margin-bottom: 4px;
-            }
-
-            .footer-info p:not(:last-child)::after {
-                display: none;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 12px;
-            }
+        .below-section + .below-section {
+            margin-top: var(--section-gap);   /* sibling sections own their gap */
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .logo {
-                top: 25px;
-                left: 4%;
-            }
-
-            .logo img {
-                width: 160px;
-                height: auto;
-            }
-
-            .hero-section {
-                min-height: 80vh;
-                padding: 80px 0;
-            }
-
-            .hero-content {
-                padding: 0 20px;
-            }
-
-            .hero-text h1 {
-                font-size: 40px;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-
-            .faq-layout {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-
-            .faq-header h2 {
-                font-size: 28px;
-            }
+        .below h2 {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            line-height: 1.18;
+            background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.62) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 0 28px;
         }
 
-        @media (max-width: 480px) {
-            .logo {
-                top: 20px;
-                left: 5%;
-            }
-
-            .logo img {
-                height: 160px;
-            }
-
-            .hero-section {
-                min-height: 70vh;
-                padding: 60px 0;
-            }
-
-            .hero-text h1 {
-                font-size: 32px;
-            }
-
-            .faq-header h2 {
-                font-size: 24px;
-            }
-
-            .faq-question {
-                font-size: 16px;
-                padding: 20px;
-            }
+        .below ol {
+            list-style: none;
+            padding-left: 0;
+            margin: 0 0 40px;
+            color: var(--text-secondary);
+            font-size: 16px;
+            counter-reset: step;
+            position: relative;
         }
+
+        .below ol li {
+            position: relative;
+            z-index: 1;   /* keep li (and its dot) above the step-path svg */
+            margin-bottom: 22px;
+            padding-left: 44px;
+            line-height: 1.6;
+            counter-increment: step;
+        }
+
+        .below ol li:last-child { margin-bottom: 0; }
+
+        /* numbered step dots along the progress path (populated by JS) */
+        .step-dot {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 2px solid var(--border-strong);
+            display: grid;
+            place-items: center;
+            font-size: 11px;
+            font-weight: 600;
+            line-height: 1;
+            color: var(--text-primary);
+            z-index: 1;
+        }
+
+        .step-dot::before { content: counter(step); }
+
+        .step-path {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 24px;
+            height: 100%;
+            overflow: visible;
+            z-index: 0;
+        }
+
+        .below strong {
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        /* highlight sweep: emerald marker wipes in via background-size (animated by GSAP) */
+        .below p strong {
+            background-image: linear-gradient(rgba(220, 38, 38, 0.35), rgba(220, 38, 38, 0.35));
+            background-repeat: no-repeat;
+            background-size: 0% 100%;
+            background-position: 0 0;
+            border-radius: 3px;
+            padding: 0 2px;
+            margin: 0 -2px;
+        }
+
+        /* ---------- Closing CTA ---------- */
+        .cta-section {
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(40px, 7vw, 68px);
+            font-weight: 700;
+            letter-spacing: -0.035em;
+            line-height: 1.18;
+            background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.72) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 40px rgba(0, 0, 0, 1)) drop-shadow(0 0 12px rgba(0, 0, 0, 0.95)) drop-shadow(0 2px 4px rgba(0, 0, 0, 0.9));
+            margin: 0 0 24px;
+        }
+
+        .cta-section p {
+            font-size: clamp(17px, 2.4vw, 21px);
+            font-weight: 400;
+            letter-spacing: -0.014em;
+            line-height: 1.55;
+            color: var(--text-secondary);
+            max-width: 620px;
+            margin: 0 auto 40px;
+        }
+
+        .below p {
+            color: var(--text-secondary);
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
     </style>
 </head>
 <body>
-    <div class="logo">
-        <img src="logo-with-url.svg" alt="Merlion.bot" />
-    </div>
-
-    <!-- Main Content -->
-    <main class="main-content">
-        <div class="hero-section">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <h1>Build automations across all your applications</h1>
-                    
-                    <div class="features">
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <img src="linked-icon.svg" alt="Universal Connector" />
-                            </div>
-                            <div class="feature-text">
-                                <h3>Instant Connectors</h3>
-                                <p>Merlion builds connectors instantly for any application with an <span class="tooltip">API<span class="tooltip-icon">?</span>
-                                    <span class="tooltip-text">
-                                        APIs are the standard way for automation platforms to connect applications. Most modern business apps have APIs.
-                                        <br><br>
-                                        Other automation platforms require you to wait weeks or months if a connector is not available, even if the APIs are there.
-                                    </span>
-                                </span>
-                            </p>
-                            </div>
-                        </div>
-                        <div class="feature">
-                            <div class="feature-icon">
-                                <img src="nocode-icon.svg" alt="Lightning Fast" />
-                            </div>
-                            <div class="feature-text">
-                                <h3>No Code, No Drag, No Drop</h3>
-                                <p>Merlion asks you questions using real scenarios, not code, not low-code</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="hero-cta">
-                        <a href="https://buttondown.com/merlionbot" class="btn btn-primary">Sign up for waitlist</a>
-                    </div>
-                </div>
-            </div>
+    <img src="/assets/logo.png" alt="merlion.bot" style="position: absolute; top: 24px; left: 28px; height: 24px; opacity: 0.9; z-index: 10;">
+    <a href="https://us.merlion.bot/" class="nav-login">Log in</a>
+    <section class="hero">
+        <div id="dots"></div>
+        <div class="hero-inner">
+        <h1>Integrations you can trust</h1>
+        <p>
+            The integration platform that programmatically confirms you sent the right data to the other side.
+            Prevent integration mistakes before they cost you even more money.
+        </p>
+        <div class="hero-ctas">
+            <a href="https://us.merlion.bot/registration" class="btn btn-lg btn-accent">Sign up for waitlist</a>
         </div>
-    </main>
-
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <div class="faq-container">
-            <div class="faq-layout">
-                <div class="faq-header">
-                    <h2>Frequently Asked Questions</h2>
-                </div>
-                
-                <div class="faq-list">
-                    <div class="faq-item">
-                        <details name="faq">
-                            <summary class="faq-question">What is Merlion and how does it work?</summary>
-                            <div class="faq-answer">
-                                <p>Merlion is an automation platform that builds connections between your applications instantly. Unlike traditional automation tools, Merlion uses a conversational approach where it asks you questions about real business scenarios rather than requiring you to code, drag, or drop elements to create workflows.</p>
-                                <p>To build instant connectors, Merlion communicates with your applications' APIs to understand the data and actions available.</p>
-                                <p>Merlion was created after building hundreds of integrations for real customers on other platforms, and learning the hard way that traditional automation tools are not just expensive, but also hard to maintain.</p>
-                            </div>
-                        </details>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <details name="faq">
-                            <summary class="faq-question">What is an API and why does it matter for automation?</summary>
-                            <div class="faq-answer">
-                                <p>An API (Application Programming Interface) is like a bridge that allows different software applications to communicate and share data with each other. Most modern business applications have APIs, which is what makes automation possible. You don't need to understand how APIs work technically - Merlion handles all the technical details for you.</p>
-                            </div>
-                        </details>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <details name="faq">
-                            <summary class="faq-question">What makes Merlion different from other automation tools like Zapier, Make, or Microsoft Power Automate?</summary>
-                            <div class="faq-answer">
-                                <p>Merlion's key differentiator is its "no code, no drag, no drop" approach. Instead of building workflows visually or through code, Merlion asks you questions about your actual business scenarios and builds the automations for you. It also creates instant connectors for any application with an API, eliminating the wait time for new integrations.</p>
-                            </div>
-                        </details>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <details name="faq">
-                            <summary class="faq-question">What applications can Merlion connect to, and can it work with custom or proprietary systems?</summary>
-                            <div class="faq-answer">
-                                <p>Merlion can connect to any application that has an API by building instant connectors. This includes popular business applications (like Salesforce, Gmail, Slack, QuickBooks), custom-built systems, and proprietary software. If an application doesn't have an API, Merlion's support team can help explore alternative connection methods.</p>
-                            </div>
-                        </details>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <details name="faq">
-                            <summary class="faq-question">Do I need technical skills to use Merlion, and how long does setup take?</summary>
-                            <div class="faq-answer">
-                                <p>No technical, coding, or low-code skills are required. Merlion guides you through setup using natural language questions about your business processes.</p>
-                                <p>Once questions are answered, Merlion builds your automation instantly, no human intervention required.</p>
-                            </div>
-                        </details>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <details name="faq">
-                            <summary class="faq-question">What are the pricing options, and how do I get started?</summary>
-                            <div class="faq-answer">
-                                <p>Currently, Merlion is in a waitlist phase. We aim to price similarly to existing small-business automation tools. Sign up for the waitlist to receive early access and pricing information.</p>
-                            </div>
-                        </details>
-                    </div>
-                    
-                    <div class="faq-item">
-                        <details name="faq">
-                            <summary class="faq-question">How secure and reliable is Merlion, and what happens to my data?</summary>
-                            <div class="faq-answer">
-                                <p>Merlion saves your automation data to an encrypted, logically separated database that is not shared with any other customers.</p>
-                                <p>To build its instant connectors for all customers, Merlion also stores programatically sanitized and anonymized automation data in its own application databases that are not linked to any customers or individuals.</p>
-                                <p>To enable the workflow building experience, Merlion also stores the minimum amount of information required to have separate user accounts: your email address, name, and company name. We do not sell your data to third parties.</p>
-                            </div>
-                        </details>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
-         <!-- Footer -->
-     <footer class="footer">
-         <div class="footer-content">
-            <div class="footer-info">
-                <p>440 N Barranca Ave #2902</p>
-                <p>Covina, CA 91723</p>
-                <p>+1 (408) 915-3039</p>
+    <div class="below" id="below">
+        <div class="below-inner">
+        <section class="below-section">
+        <h2>Integrations break way too often</h2>
+        <p>
+            High-stakes integrations are painful to build, and can feel impossible to maintain.
+        </p>
+        <p>
+            The typical path for challenging integrations is to exceed deadlines and go over budget.
+            When the integration is finally built, the data sent to the other side is incorrect.
+        </p>
+        <p>
+            Mistakes in these integrations cost real money: <strong>chargebacks</strong>, <strong>payment delays</strong>,
+            <strong>supplier disputes</strong>, <strong>compliance fines</strong>, <strong>broken contract terms</strong>,
+            <strong>claim denials</strong>, and <strong>unbilled revenue</strong>.
+        </p>
+        </section>
+
+        <section class="below-section">
+        <h2>There is only one way out</h2>
+        <p>
+            Businesses try to fix mistakes in high stakes integrations by hiring replacement developers,
+            adding project managers, building integrations in raw code, and, now, throwing large language models
+            blindly at the chaos.
+        </p>
+        <p>
+            Merlion.bot is the integration platform that enforces correctness programmatically. It works like this:
+        </p>
+        <ol>
+            <li>Merlion.bot works with your team to interactively explore real scenarios your integrations will face.</li>
+            <li>For each scenario, the platform generates real expected outputs in your target system, and confirms it with your team.</li>
+            <li>Your workflow is tested against every scenario before every deployment.</li>
+            <li>In production, you update integrations by updating scenarios, not dragging fields around in a canvas and hoping it won't break.</li>
+        </ol>
+        </section>
+
+        <section class="below-section cta-section">
+            <h2>It's time for a better integration platform</h2>
+            <p>
+                Merlion.bot connects to any application with a REST API. We closed our first
+                round of funding in August 2026 and are now accepting applications for the waitlist.
+            </p>
+            <div class="cta-btn">
+                <a href="https://us.merlion.bot/registration" class="btn btn-lg btn-accent">Sign up for waitlist</a>
             </div>
-             
-               <div class="footer-bottom">
-                   <p>&copy; <script>document.write(new Date().getFullYear())</script>
-                      KHT Software, Inc. All rights reserved.</p>
-                   <div class="footer-links">
-                       <a href="privacy.html">Privacy Policy</a>
-                   </div>
-               </div>
-         </div>
-     </footer>
+        </section>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-meta">
+                <p>&copy; <span id="footer-year"></span> KHT Software, Inc.</p>
+                <p>440 N Barranca Ave #2902, Covina, CA 91723</p>
+                <p>+1 (408) 915-3039</p>
+                <div class="footer-links">
+                    <a href="privacy.html">Privacy Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/all@3/tsparticles.all.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.20/dist/lenis.min.js"></script>
+    <script>
+    (() => {
+        // Starfield via tsParticles
+        (async () => {
+            await loadAll(tsParticles); // register plugins before loading
+
+            const container = await tsParticles.load({
+                id: "dots",
+                options: {
+                    fullScreen: { enable: true, zIndex: 0 },
+                    background: { color: "#000000" },
+                    fpsLimit: 60,
+                    detectRetina: true,
+                    particles: {
+                        number: { value: 58, density: { enable: true, width: 1920, height: 1080 } },
+                        reduceDuplicates: true,  // one instance of each app until it dies
+                        color: { value: "#ffffff" },
+                        shape: {
+                            type: "image",
+                            options: {
+                                image: [
+                                    { src: "/assets/saas-icons-white/notion.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/github.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/figma.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/stripe.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/jira.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/googledrive.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/dropbox.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/asana.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/trello.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/intercom.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/discord.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/mailchimp.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/shopify.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/quickbooks.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/zendesk.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/gmail.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/googlecalendar.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/googlesheets.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/whatsapp.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/telegram.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/zoom.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/airtable.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/calendly.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/hubspot.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/mongodb.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/postgresql.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/snowflake.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/googlecloud.svg", width: 12, height: 12 },
+                            { src: "/assets/saas-icons-white/netlify.svg", width: 12, height: 12 }
+                                ]
+                            }
+                        },
+                        opacity: {
+                            value: { min: 0, max: 0.5 },   // floor 0: fades pass through true invisibility
+                            animation: {
+                                enable: true,
+                                speed: 0.45,
+                                sync: false,
+                                startValue: "random", // born mid-fade (library's "min" start is broken for init-spawned particles)
+                                destroy: "min",       // fades out to zero -> dies, replaced by a new random app
+                                minimumValue: 0
+                            }
+                        },
+                        links: {
+                            enable: true,
+                            distance: 120,
+                            frequency: 0.203,  // ~20% of eligible pairs get an edge
+                            color: "#ffffff",
+                            opacity: 0.35,
+                            width: 1
+                        },
+                        size: { value: { min: 4, max: 12 } },
+                        move: {
+                            enable: true,
+                            direction: "none",         // every star drifts its own way
+                            speed: { min: 0.1, max: 0.5 },
+                            straight: false,
+                            outModes: { default: "out" }
+                        }
+                    },
+                    interactivity: {
+                        events: { onHover: { enable: true, mode: "attract" } },
+                        modes: { attract: { distance: 200, speed: 1, factor: 0.3, maxSpeed: 0.4 } }
+                    }
+                },
+            });
+
+            const IMAGES = [
+            "/assets/saas-icons-white/notion.svg",
+            "/assets/saas-icons-white/github.svg",
+            "/assets/saas-icons-white/figma.svg",
+            "/assets/saas-icons-white/stripe.svg",
+            "/assets/saas-icons-white/jira.svg",
+            "/assets/saas-icons-white/googledrive.svg",
+            "/assets/saas-icons-white/dropbox.svg",
+            "/assets/saas-icons-white/asana.svg",
+            "/assets/saas-icons-white/trello.svg",
+            "/assets/saas-icons-white/intercom.svg",
+            "/assets/saas-icons-white/discord.svg",
+            "/assets/saas-icons-white/mailchimp.svg",
+            "/assets/saas-icons-white/shopify.svg",
+            "/assets/saas-icons-white/quickbooks.svg",
+            "/assets/saas-icons-white/zendesk.svg",
+            "/assets/saas-icons-white/gmail.svg",
+            "/assets/saas-icons-white/googlecalendar.svg",
+            "/assets/saas-icons-white/googlesheets.svg",
+            "/assets/saas-icons-white/whatsapp.svg",
+            "/assets/saas-icons-white/telegram.svg",
+            "/assets/saas-icons-white/zoom.svg",
+            "/assets/saas-icons-white/airtable.svg",
+            "/assets/saas-icons-white/calendly.svg",
+            "/assets/saas-icons-white/hubspot.svg",
+            "/assets/saas-icons-white/mongodb.svg",
+            "/assets/saas-icons-white/postgresql.svg",
+            "/assets/saas-icons-white/snowflake.svg",
+            "/assets/saas-icons-white/googlecloud.svg",
+            "/assets/saas-icons-white/netlify.svg",
+            "/assets/saas-icons-white/gitlab.svg",
+            "/assets/saas-icons-white/bitbucket.svg",
+            "/assets/saas-icons-white/loom.svg",
+            "/assets/saas-icons-white/supabase.svg",
+            "/assets/saas-icons-white/firebase.svg",
+            "/assets/saas-icons-white/vercel.svg",
+            "/assets/saas-icons-white/digitalocean.svg",
+            "/assets/saas-icons-white/cloudflare.svg",
+            "/assets/saas-icons-white/docker.svg",
+            "/assets/saas-icons-white/kubernetes.svg",
+            "/assets/saas-icons-white/mixpanel.svg",
+            "/assets/saas-icons-white/datadog.svg",
+            "/assets/saas-icons-white/grafana.svg",
+            "/assets/saas-icons-white/webflow.svg",
+            "/assets/saas-icons-white/framer.svg",
+            "/assets/saas-icons-white/medium.svg",
+            "/assets/saas-icons-white/substack.svg",
+            "/assets/saas-icons-white/squarespace.svg",
+            "/assets/saas-icons-white/wordpress.svg",
+            "/assets/saas-icons-white/googleslides.svg",
+            "/assets/saas-icons-white/googlemeet.svg",
+            "/assets/saas-icons-white/googleforms.svg",
+            "/assets/saas-icons-white/googlechat.svg",
+            "/assets/saas-icons-white/clickup.svg",
+            "/assets/saas-icons-white/linear.svg",
+            "/assets/saas-icons-white/basecamp.svg",
+            "/assets/saas-icons-white/typeform.svg",
+            "/assets/saas-icons-white/jetbrains.svg",
+            "/assets/saas-icons-white/postman.svg",
+        ];
+        // Respawn: the library doesn't auto-refill destroyed particles, so top
+            // back up to the density target with the public addParticle API.
+            // Override makes refills born invisible (fade in) instead of popping.
+            setInterval(() => {
+                const c = tsParticles.dom()[0];
+                if (!c) return;
+                const target = Math.min(
+                    c.actualOptions.particles.number.value
+                        * (c.canvas.size.width * c.canvas.size.height) / (1920 * 1080),
+                    IMAGES.length  // never more particles than unique logos
+                );
+                const deficit = Math.round(target) - c.particles.count;
+
+                // one instance of each app: spawn only logos no live particle is using
+                const used = new Set();
+                const dupes = [];
+                for (let i = 0; i < c.particles.count; i++) {
+                    const p = c.particles.get(i);
+                    const src = p?.image?.source;
+                    if (!src) continue;
+                    if (used.has(src)) dupes.push(p); else used.add(src);
+                }
+                // resize spawns bypass the free-list; send duplicates through a graceful fade-out
+                for (const p of dupes) {
+                    if (p?.opacity) { p.opacity.status = "decreasing"; }
+                }
+                const free = IMAGES.filter(src => !used.has(src));
+
+                for (let i = 0; i < deficit; i++) {
+                    const pool = free.length ? free : IMAGES;
+                    const pick = (Math.random() * pool.length) | 0;
+                    const src = pool[pick];
+                    if (pool === free) free.splice(pick, 1); // don't hand the same logo out twice in one pass
+                    Promise.resolve(
+                        c.particles.addParticle(
+                            { x: Math.random() * c.canvas.size.width, y: Math.random() * c.canvas.size.height },
+                            {
+                                opacity: { animation: { startValue: "min" } },
+                                shape: { type: "image", options: { image: { src, width: 12, height: 12 } } }
+                            }
+                        )
+                    ).then(p => {
+                        // the library ignores the startValue override; force a fade-in birth
+                        if (p?.opacity) { p.opacity.value = 0; p.opacity.status = "increasing"; }
+                    });
+                }
+            }, 1000);
+
+            document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+            // below-fold reveals via GSAP ScrollTrigger
+            gsap.registerPlugin(ScrollTrigger, DrawSVGPlugin);
+            lenis.on('scroll', ScrollTrigger.update);
+
+            // scrub 'end' positions assume the element can climb high up the viewport;
+            // elements near the page bottom never get that far, so clamp to max scroll
+            // or their animations stall partway
+            function docTop(el) {
+                let t = 0;
+                while (el) { t += el.offsetTop; el = el.offsetParent; }
+                return t;
+            }
+            function clampedEnd(el, viewportFrac) {
+                return () => Math.min(
+                    docTop(el) - window.innerHeight * viewportFrac,
+                    ScrollTrigger.maxScroll(window)
+                );
+            }
+
+            document.querySelectorAll('.below h2, .below p, .cta-btn').forEach(el => {
+                // list items reveal one by one instead of as a single block
+                const targets = el.tagName === 'OL' ? el.querySelectorAll('li') : el;
+                const isLast = !!el.closest('.cta-section');
+                gsap.set(targets, { opacity: 0, y: 28 });
+                gsap.to(targets, {
+                    opacity: 1,
+                    y: 0,
+                    ease: 'none',
+                    stagger: 0.16,
+                    scrollTrigger: {
+                        trigger: el,
+                        start: isLast ? 'top bottom' : 'top 95%',
+                        end: clampedEnd(el, isLast ? 0.75 : 0.65),
+                        scrub: 0.6   // progress tied to scroll position (via lenis); 0.6s catch-up smoothing
+                    }
+                });
+            });
+            ScrollTrigger.refresh();
+
+            // numbered steps: progress path draws down + dots pop as the line reaches them
+            const ol = document.querySelector('.below ol');
+            const steps = ol.querySelectorAll('li');
+            const dots = [...steps].map(li => {
+                const d = document.createElement('span');
+                d.className = 'step-dot';
+                li.prepend(d);
+                return d;
+            });
+            const pathSvg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            pathSvg.setAttribute('class', 'step-path');
+            const pathLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            pathLine.setAttribute('x1', '12');
+            pathLine.setAttribute('x2', '12');
+            pathLine.setAttribute('stroke', '#059669');
+            pathLine.setAttribute('stroke-width', '2');
+            pathSvg.appendChild(pathLine);
+            ol.appendChild(pathSvg);
+
+            // geometry depends on layout; recompute whenever ScrollTrigger recalculates
+            function sizePath() {
+                const first = steps[0].offsetTop + 12;
+                const last = steps[steps.length - 1].offsetTop + 12;
+                pathLine.setAttribute('y1', String(first));
+                pathLine.setAttribute('y2', String(last));
+            }
+            sizePath();
+            ScrollTrigger.addEventListener('refreshInit', sizePath);
+
+            gsap.set(steps, { opacity: 0, x: 24 });
+            gsap.set(dots, { scale: 0, transformOrigin: '50% 50%' });
+            const LINE_DUR = 4;  // arbitrary units; dot timings are fractions of it
+            const LEAD = 0.35;   // dots finish popping just before the line tip reaches them
+            const stepTl = gsap.timeline({
+                scrollTrigger: {
+                    trigger: ol,
+                    start: 'top 95%',
+                    end: () => Math.min(
+                        docTop(ol) + ol.offsetHeight - window.innerHeight * 0.65,
+                        ScrollTrigger.maxScroll(window)
+                    ),
+                    scrub: 0.6
+                }
+            });
+
+            // dot timings depend on layout (webfonts shift li positions after load);
+            // rebuild the timeline whenever ScrollTrigger recalculates
+            function buildStepTl() {
+                const lastTop = steps[steps.length - 1].offsetTop;
+                stepTl.clear();
+                stepTl.fromTo(pathLine, { drawSVG: '0%' }, { drawSVG: '100%', duration: LINE_DUR, ease: 'none' }, 0);
+                dots.forEach((dot, i) => {
+                    const t = Math.max((steps[i].offsetTop / lastTop) * LINE_DUR - LEAD, 0);
+                    stepTl.to(dot, { scale: 1, duration: 0.35, ease: 'back.out(2.5)' }, t)
+                          .to(dot, { borderColor: '#059669', boxShadow: 'inset 0 0 0 12px rgba(5,158,102,0.18)', duration: 0.35 }, t + 0.1)
+                          .to(steps[i], { opacity: 1, x: 0, duration: 0.6, ease: 'none' }, t + 0.1);
+                });
+            }
+            buildStepTl();
+            ScrollTrigger.addEventListener('refreshInit', () => { sizePath(); buildStepTl(); });
+
+            // cost terms (chargebacks, payment delays, ...): marker-highlight sweeps in one by one
+            const costTerms = document.querySelectorAll('.below p strong');
+            gsap.set(costTerms, { backgroundSize: '0% 100%' });
+            gsap.to(costTerms, {
+                backgroundSize: '100% 100%',
+                ease: 'none',
+                stagger: 0.5,
+                scrollTrigger: {
+                    trigger: costTerms[0].closest('p'),
+                    start: 'top 70%',
+                    end: clampedEnd(costTerms[0].closest('p'), 0.55),
+                    scrub: 0.6
+                }
+            });
+
+        })();
+
+        // Momentum smooth scrolling
+        const lenis = new Lenis({
+            lerp: 0.06,            // lower = floatier, longer glide after each wheel tick
+            wheelMultiplier: 1.1,  // slightly bigger movement per wheel tick
+            touchMultiplier: 1.5   // more glide feel on touch devices
+        });
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // Hero drifts up and fades out over the first viewport-height of scroll
+        const heroInner = document.querySelector('.hero-inner');
+        const hero = document.querySelector('.hero');
+
+        lenis.on('scroll', ({ scroll }) => {
+            const vh = window.innerHeight;
+            const progress = Math.min(scroll / vh, 1);
+            const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+            heroInner.style.transform = `translateY(${eased * -80}px) scale(${1 - eased * 0.06})`;
+            heroInner.style.opacity = 1 - eased;
+            hero.style.pointerEvents = progress >= 1 ? 'none' : '';
+            // chevron (fixed scroll cue at viewport bottom) fades out over first 300px
+            document.querySelector('.below').style.setProperty('--caret-o', 1 - Math.min(scroll / 300, 1));
+        });
+    })();
+    </script>
 </body>
-</html> 
+</html>
