@@ -240,6 +240,23 @@
             letter-spacing: -0.005em;
         }
 
+        .footer-legal {
+            max-width: 1200px;
+            margin: 24px auto 0;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 8px 28px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 28px;
+        }
+
         .footer-links a {
             color: var(--text-tertiary);
             text-decoration: none;
@@ -253,6 +270,7 @@
             .footer-content { flex-direction: column; text-align: center; }
             .footer-meta { flex-direction: column; gap: 4px; }
             .footer-meta > * + *::before { content: none; }
+            .footer-legal { flex-direction: column; align-items: center; gap: 8px; }
         }
 
         .below-section + .below-section {
@@ -447,9 +465,12 @@
                 <p>&copy; <span id="footer-year"></span> KHT Software, Inc.</p>
                 <p>440 N Barranca Ave #2902, Covina, CA 91723</p>
                 <p>+1 (408) 915-3039</p>
-                <div class="footer-links">
-                    <a href="privacy.html">Privacy Policy</a>
-                </div>
+            </div>
+        </div>
+        <div class="footer-legal">
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms and Conditions</a>
             </div>
         </div>
     </footer>
