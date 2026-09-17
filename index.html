@@ -80,6 +80,84 @@
 
         .btn-lg { padding: 12px 24px; font-size: 15px; border-radius: 10px; }
 
+        .btn-outline {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.45);
+        }
+
+        .btn-outline:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+
+        /* ---------- Demo video section ---------- */
+        /* ---------- Demo video band: transparent window onto the hero starfield canvas ---------- */
+        .demo-band {
+            position: relative;
+            z-index: 1;   /* above the z-0 starfield canvas, below the z-2 sheets */
+            padding: 120px 24px;
+        }
+
+        .demo-video-wrap {
+            position: relative;
+            z-index: 0; /* contain the ::before glow's negative z-index */
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 0; /* kill inline baseline gap under the iframe */
+        }
+
+        .demo-video-wrap::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle farthest-side at 50% 50%,
+                        rgba(126, 127, 128, 0.25) 0%,
+                        rgba(126, 127, 128, 0.25) 10%,
+                        rgba(126, 127, 128, 0.1) 59%,
+                        transparent 100%);
+            transform: scale(1.9);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .demo-video-wrap iframe {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            height: auto;
+            border: 0;
+            border-radius: 12px;
+            background: #000;
+        }
+
+        .chapters {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 18px;
+            font-size: 13px; /* reset the wrap's font-size: 0 */
+        }
+
+        .chapter {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            cursor: pointer;
+            transition: color 0.15s ease, border-color 0.15s ease, background-color 0.15s ease;
+        }
+
+        .chapter:hover { color: var(--text-primary); border-color: var(--border-strong); background: rgba(255, 255, 255, 0.06); }
+
+        .chapter .t { color: #059669; font-variant-numeric: tabular-nums; }
+
         /* ---------- Hero (full viewport) ---------- */
         .hero {
             position: relative;
@@ -157,7 +235,7 @@
 
         /* roundish shadow: sheet floats above the starfield */
         /* military chevron: fixed scroll cue at viewport bottom; bobs, fades out on scroll */
-        .below::after {
+        .below:not(.below-cta)::after {
             content: '';
             position: fixed;
             bottom: 28px;
@@ -406,6 +484,7 @@
         </p>
         <div class="hero-ctas">
             <a href="https://us.merlion.bot/registration" class="btn btn-lg btn-accent">Sign up for waitlist</a>
+            <button type="button" class="btn btn-lg btn-outline" id="watch-demo-btn">▶ Watch Demo</button>
         </div>
         </div>
     </section>
@@ -439,13 +518,32 @@
             Merlion.bot is the integration platform that enforces correctness programmatically. It works like this:
         </p>
         <ol>
-            <li>Merlion.bot works with your team to interactively explore real scenarios your integrations will face.</li>
-            <li>For each scenario, the platform generates real expected outputs in your target system, and confirms it with your team.</li>
+            <li>Merlion.bot works with your team to build out example-driven scenario tests.</li>
             <li>Your workflow is tested against every scenario before every deployment.</li>
             <li>In production, you update integrations by updating scenarios, not dragging fields around in a canvas and hoping it won't break.</li>
         </ol>
         </section>
+        </div>
+    </div>
 
+    <section class="demo-band" id="demo-video">
+        <div class="demo-video-wrap">
+            <iframe
+                src="https://www.youtube.com/embed/2hlYu40c4lI?si=sJgQIuTvkMVfsJV-&rel=0&enablejsapi=1"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen></iframe>
+            <div class="chapters">
+                <button type="button" class="chapter" data-t="0"><span class="t">0:00</span>Integration scenario background</button>
+                <button type="button" class="chapter" data-t="93"><span class="t">1:33</span>Example tests for EDI integration scenario</button>
+                <button type="button" class="chapter" data-t="260"><span class="t">4:20</span>Regular integration platforms versus Merlion</button>
+            </div>
+        </div>
+    </section>
+
+    <div class="below below-cta">
+        <div class="below-inner">
         <section class="below-section cta-section">
             <h2>It's time for a better integration platform</h2>
             <p>
@@ -697,8 +795,7 @@
                 );
             }
 
-            document.querySelectorAll('.below h2, .below p, .cta-btn').forEach(el => {
-                // list items reveal one by one instead of as a single block
+            document.querySelectorAll('.below h2, .below p, .cta-btn').forEach(el => {                // list items reveal one by one instead of as a single block
                 const targets = el.tagName === 'OL' ? el.querySelectorAll('li') : el;
                 const isLast = !!el.closest('.cta-section');
                 gsap.set(targets, { opacity: 0, y: 28 });
@@ -714,6 +811,21 @@
                         scrub: 0.6   // progress tied to scroll position (via lenis); 0.6s catch-up smoothing
                     }
                 });
+            });
+
+            // demo video band: same scrubbed reveal as the text sections
+            const demoWrap = document.querySelector('.demo-video-wrap');
+            gsap.set(demoWrap, { opacity: 0, y: 28 });
+            gsap.to(demoWrap, {
+                opacity: 1,
+                y: 0,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: demoWrap,
+                    start: 'top 95%',
+                    end: clampedEnd(demoWrap, 0.65),
+                    scrub: 0.6
+                }
             });
             ScrollTrigger.refresh();
 
@@ -801,6 +913,7 @@
             wheelMultiplier: 1.1,  // slightly bigger movement per wheel tick
             touchMultiplier: 1.5   // more glide feel on touch devices
         });
+        window.__lenis = lenis; // so the hero "Watch Demo" button can smooth-scroll to #demo-video
         function raf(time) {
             lenis.raf(time);
             requestAnimationFrame(raf);
@@ -820,6 +933,27 @@
             hero.style.pointerEvents = progress >= 1 ? 'none' : '';
             // chevron (fixed scroll cue at viewport bottom) fades out over first 300px
             document.querySelector('.below').style.setProperty('--caret-o', 1 - Math.min(scroll / 300, 1));
+        });
+    })();
+    </script>
+
+    <script>
+    (() => {
+        // hero "Watch Demo" scrolls to the in-page video section
+        document.getElementById('watch-demo-btn').addEventListener('click', () => {
+            const target = document.getElementById('demo-video');
+            if (window.__lenis) window.__lenis.scrollTo(target, { offset: -80 });
+            else target.scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // chapter pills: seek + play via the YouTube iframe JS API
+        const iframe = document.querySelector('#demo-video iframe');
+        const send = (func, args) => iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args }), '*');
+        document.querySelectorAll('.chapter').forEach(btn => {
+            btn.addEventListener('click', () => {
+                send('seekTo', [parseInt(btn.dataset.t, 10), true]);
+                send('playVideo');
+            });
         });
     })();
     </script>
